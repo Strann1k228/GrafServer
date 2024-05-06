@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p><img src="static/graf_picture.png"></p>
+    <form action="/t" method="post">
+        <input type="text" id="name" name="name" style="margin:4px 0px 4px"/>
+    </form>
+
+    <form action="/PLUS" method="post">
+  <button id="RBtn" name="PlusBtn" type="submit" style="position: absolute; top: 520px; left: 200px;">+</button>
+</form>
+{% if g_num == 2 %}
+        <form action="/t" method="post">
+        <input type="text" id="name1" name="name1" style="margin:4px 0px 4px"/>
+    </form>
+{% elif g_num == 3 %}
+    <form action="/t" method="post">
+        <input type="text" id="name2.0" name="name2.0" style="margin:4px 0px 4px"/>
+    </form>
+    <form action="/t" method="post">
+        <input type="text" id="name2.1" name="name2.1" style="margin:4px 0px 4px"/>
+    </form>
+{% endif %}
+<p>{{text}}</p>
+</body>
+</html>
