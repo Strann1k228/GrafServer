@@ -2,29 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>GrafServer</title>
 </head>
 <body>
-    <p><img src="static/graf_picture.png"></p>
+    <p><img src="static/graf_picture.png" alt="хз лол"></p>
     <form action="/t" method="post">
-        <input type="text" id="name" name="name" style="margin:4px 0px 4px"/>
+        <input type="text" id="name" name="name" style="margin:4px 0px 4px; position: absolute; top: 516px; left: 20px;"/>
     </form>
-
     <form action="/PLUS" method="post">
   <button id="RBtn" name="PlusBtn" type="submit" style="position: absolute; top: 520px; left: 200px;">+</button>
 </form>
 {% if g_num == 2 %}
         <form action="/t" method="post">
-        <input type="text" id="name1" name="name1" style="margin:4px 0px 4px"/>
+        <input type="text" id="name1" name="name1" style="margin:4px 0px 4px; position: absolute; top: 546px; left: 20px;"/>
     </form>
+    <form action="/REMOVE" method="post">
+  <button id="REMBut1" name="PlusBtn" type="submit" style="position: absolute; top: 520px; left: 240px;">+</button>
+</form>
 {% elif g_num == 3 %}
     <form action="/t" method="post">
-        <input type="text" id="name2.0" name="name2.0" style="margin:4px 0px 4px"/>
+        <input type="text" id="name2.0" name="name2.0" style="margin:4px 0px 4px;position: absolute; top: 546px; left: 20px;"/>
     </form>
     <form action="/t" method="post">
-        <input type="text" id="name2.1" name="name2.1" style="margin:4px 0px 4px"/>
+        <input type="text" id="name2.1" name="name2.1" style="margin:4px 0px 4px; position: absolute; top: 576px; left: 20px;"/>
     </form>
+    <form action="/REMOVE" method="post">
+  <button id="REMBut2" name="PlusBtn" type="submit" style="position: absolute; top: 520px; left: 240px;">+</button>
+</form>
 {% endif %}
-<p>{{text}}</p>
+<!--<p>{{text}}</p>-->
 </body>
 </html>

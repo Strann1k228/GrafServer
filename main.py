@@ -1,19 +1,22 @@
 import matplotlib
+import numpy as np
 from flask import *
-
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import os
+
+matplotlib.use('Agg')
 
 text = None
 app = Flask(__name__)
 
 graf_num = 1
 
+
 def create_graf(x_l, y_l):
     plt.clf()
-    plt.axhline(0, color='black', linewidth=0.2)
-    plt.axvline(0, color='black', linewidth=0.2)
+    plt.axhline(0, color='black', linewidth=0.8)
+    plt.axvline(0, color='black', linewidth=0.8)
+    plt.grid()
     plt.plot(x_l, y_l)
     try:
         os.remove("static/graf_picture.png")
@@ -37,7 +40,7 @@ def show_text():
         t = text.replace("x", f"({str(i)})")
         y = eval(t)
         y_lst.append(y)
-    print(x_lst, y_lst)
+    # print(x_lst, y_lst)
     create_graf(x_lst, y_lst)
     return render_template('base.html', text=graf_num)
 
