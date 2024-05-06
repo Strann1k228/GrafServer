@@ -35,7 +35,6 @@ def show_text():
     x_lst, y_lst = [i for i in range(-10, 10)], []
     for i in range(-10, 10):
         t = text.replace("x", f"({str(i)})")
-        print(t)
         y = eval(t)
         y_lst.append(y)
     print(x_lst, y_lst)
