@@ -3,33 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>GrafServer</title>
+    <link rel="stylesheet" href="static/css/styles.css">
 </head>
 <body>
+
     <p><img src="static/graf_picture.png" alt="хз лол"></p>
-    <form action="/t" method="post">
-        <input type="text" id="name" name="name" style="margin:4px 0px 4px; position: absolute; top: 516px; left: 20px;"/>
+    <form action="/cr_graf1" method="post">
+        <input type="text" id="name" name="tbut1" placeholder="{{gr_1}}" style="margin:4px 0px 4px; position: absolute; top: 516px; left: 20px;"/>
+        <input type="color" id="namee" name="tbut1_color" class="color1" value="{{col1}}" style="margin:4px 0px 4px; position: absolute; top: 516px; left: 260px;"/>
     </form>
-    <form action="/PLUS" method="post">
-  <button id="RBtn" name="PlusBtn" type="submit" style="position: absolute; top: 520px; left: 200px;">+</button>
-</form>
-{% if g_num == 2 %}
-        <form action="/t" method="post">
-        <input type="text" id="name1" name="name1" style="margin:4px 0px 4px; position: absolute; top: 546px; left: 20px;"/>
+    <form action="/PLUS_2" method="post">
+    <button id="PlBtn2" name="PlusBtn2" type="submit" style="position: absolute; top: 520px; left: 200px;">+</button>
     </form>
-    <form action="/REMOVE" method="post">
-  <button id="REMBut1" name="PlusBtn" type="submit" style="position: absolute; top: 520px; left: 240px;">+</button>
-</form>
-{% elif g_num == 3 %}
-    <form action="/t" method="post">
-        <input type="text" id="name2.0" name="name2.0" style="margin:4px 0px 4px;position: absolute; top: 546px; left: 20px;"/>
+{% if g_num == 2 or g_num == 3 %}
+    <form action="/cr_graf2" method="post">
+    <input type="text" id="name1" name="tbut2" placeholder="{{gr_2}}" style="margin:4px 0px 4px; position: absolute; top: 556px; left: 20px;"/>
     </form>
-    <form action="/t" method="post">
-        <input type="text" id="name2.1" name="name2.1" style="margin:4px 0px 4px; position: absolute; top: 576px; left: 20px;"/>
+    <form action="/PLUS_3" method="post">
+    <button id="PlBtn3" name="PlusBtn3" type="submit" style="position: absolute; top: 560px; left: 200px;">+</button>
     </form>
-    <form action="/REMOVE" method="post">
-  <button id="REMBut2" name="PlusBtn" type="submit" style="position: absolute; top: 520px; left: 240px;">+</button>
-</form>
+    <form action="/MINUS_2" method="post">
+    <button id="MnBtn2" name="MinusBtn2" type="submit" style="position: absolute; top: 560px; left: 228px;">-</button>
+    </form>
+    {% if g_num == 3 %}
+        <form action="/cr_graf3" method="post">
+        <input type="text" id="name3" name="tbut3" style="margin:4px 0px 4px; position: absolute; top: 596px; left: 20px;"/>
+        </form>
+    <form action="/MINUS_3" method="post">
+    <button id="MnBtn3" name="MinusBtn3" type="submit" style="position: absolute; top: 600px; left: 200px;">-</button>
+    </form>
+    {% endif %}
 {% endif %}
-<!--<p>{{text}}</p>-->
+<!--<p style="margin:4px 0px 4px; position: absolute; top: 500px; left: 20px;">{{text}}</p>-->
+
 </body>
 </html>
