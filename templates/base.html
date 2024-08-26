@@ -6,35 +6,22 @@
     <link rel="stylesheet" href="static/css/styles.css">
 </head>
 <body>
-
     <p><img src="static/graf_picture.png" alt="хз лол"></p>
     <form action="/cr_graf1" method="post">
-        <input type="text" id="name" name="tbut1" placeholder="{{gr_1}}" style="margin:4px 0px 4px; position: absolute; top: 516px; left: 20px;"/>
-        <input type="color" id="namee" name="tbut1_color" class="color1" value="{{col1}}" style="margin:4px 0px 4px; position: absolute; top: 516px; left: 260px;"/>
+        <input type="text" id="1" name="tbut1" placeholder="{{gr_1}}" style="margin:4px 0px 4px; position: absolute; top: 516px; left: 20px;"/>
     </form>
-    <form action="/PLUS_2" method="post">
-    <button id="PlBtn2" name="PlusBtn2" type="submit" style="position: absolute; top: 520px; left: 200px;">+</button>
-    </form>
-{% if g_num == 2 or g_num == 3 %}
     <form action="/cr_graf2" method="post">
-    <input type="text" id="name1" name="tbut2" placeholder="{{gr_2}}" style="margin:4px 0px 4px; position: absolute; top: 556px; left: 20px;"/>
+        <input type="text" id="2" name="tbut2" placeholder="{{gr_2}}" style="margin:4px 0px 4px; position: absolute; top: 556px; left: 20px;"/>
     </form>
-    <form action="/PLUS_3" method="post">
-    <button id="PlBtn3" name="PlusBtn3" type="submit" style="position: absolute; top: 560px; left: 200px;">+</button>
+    <form action="/cr_graf3" method="post">
+        <input type="text" id="3" name="tbut3" placeholder="{{gr_3}}" style="margin:4px 0px 4px; position: absolute; top: 596px; left: 20px;"/>
     </form>
-    <form action="/MINUS_2" method="post">
-    <button id="MnBtn2" name="MinusBtn2" type="submit" style="position: absolute; top: 560px; left: 228px;">-</button>
+    <form action="/info_1" method="post">
+        <button id="4" name="infobut1" type="submit" style="position: absolute; top: 516px; left: 220px;">i</button>
     </form>
-    {% if g_num == 3 %}
-        <form action="/cr_graf3" method="post">
-        <input type="text" id="name3" name="tbut3" style="margin:4px 0px 4px; position: absolute; top: 596px; left: 20px;"/>
-        </form>
-    <form action="/MINUS_3" method="post">
-    <button id="MnBtn3" name="MinusBtn3" type="submit" style="position: absolute; top: 600px; left: 200px;">-</button>
-    </form>
-    {% endif %}
-{% endif %}
-<!--<p style="margin:4px 0px 4px; position: absolute; top: 500px; left: 20px;">{{text}}</p>-->
+    {% autoescape false %}
+     <h3 style="visibility: {{vis_1}}; position: absolute; top: 496px; left: 270px;">{{info_1}}</h3>
+    {% endautoescape %}
 
 </body>
 </html>
