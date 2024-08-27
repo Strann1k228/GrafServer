@@ -16,11 +16,26 @@
     <form action="/cr_graf3" method="post">
         <input type="text" id="3" name="tbut3" placeholder="{{gr_3}}" style="margin:4px 0px 4px; position: absolute; top: 596px; left: 20px;"/>
     </form>
-    <form action="/info_1" method="post">
+
+    <form action="/info__1" method="post">
         <button id="4" name="infobut1" type="submit" style="position: absolute; top: 516px; left: 220px;">i</button>
     </form>
     {% autoescape false %}
      <h3 style="visibility: {{vis_1}}; position: absolute; top: 496px; left: 270px;">{{info_1}}</h3>
+    {% endautoescape %}
+
+    <form action="/info__2" method="post">
+        <button id="5" name="infobut2" type="submit" style="position: absolute; top: 556px; left: 220px;">i</button>
+    </form>
+    {% autoescape false %}
+     <h3 style="visibility: {{vis_2}}; position: absolute; top: 536px; left: 270px;">{{info_2}}</h3>
+    {% endautoescape %}
+
+    <form action="/info__3" method="post">
+        <button id="6" name="infobut3" type="submit" style="position: absolute; top: 596px; left: 220px;">i</button>
+    </form>
+    {% autoescape false %}
+     <h3 style="visibility: {{vis_3}}; position: absolute; top: 576px; left: 270px;">{{info_3}}</h3>
     {% endautoescape %}
 
 </body>

@@ -8,8 +8,12 @@ import os
 matplotlib.use('Agg')
 
 vis_1 = "hidden"
+vis_2 = "hidden"
+vis_3 = "hidden"
 
 info_1 = ""
+info_2 = ""
+info_3 = ""
 
 grafs = {1: "", 2: "", 3: ""}
 app = Flask(__name__)
@@ -35,7 +39,7 @@ def create_graf():
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('base.html', vis_1=vis_1)
+    return render_template('base.html', vis_1=vis_1, vis_2=vis_2, vis_3=vis_3)
 
 
 def from_text_to_graf_arr(text, border_neg, border_pos):
@@ -45,7 +49,6 @@ def from_text_to_graf_arr(text, border_neg, border_pos):
         t = text.replace("x", f"({str(i)})")
         y = eval(t)
         y_lst.append(y)
-    # print(x_lst, y_lst)
     return x_lst, y_lst
 
 
@@ -54,7 +57,8 @@ def cr_gr1():
     a = request.form["tbut1"]
     grafs[1] = a
     create_graf()
-    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1)
+    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1, vis_2=vis_2, vis_3=vis_3,
+                           info_1=info_1, info_2=info_2, info_3=info_3)
 
 
 @app.route('/cr_graf2', methods=["post", "get"])
@@ -62,7 +66,8 @@ def cr_gr2():
     b = request.form["tbut2"]
     grafs[2] = b
     create_graf()
-    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1)
+    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1, vis_2=vis_2, vis_3=vis_3,
+                           info_1=info_1, info_2=info_2, info_3=info_3)
 
 
 @app.route('/cr_graf3', methods=["post", "get"])
@@ -70,45 +75,67 @@ def cr_gr3():
     c = request.form["tbut3"]
     grafs[3] = c
     create_graf()
-    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1)
+    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1, vis_2=vis_2, vis_3=vis_3,
+                           info_1=info_1, info_2=info_2, info_3=info_3)
 
 
-@app.route("/info_1", methods=["post", "get"])
-def info_1():
+@app.route("/info__1", methods=["post", "get"])
+def info__1():
     global vis_1, info_1
-    if vis_1 == "hidden":
-        vis_1 = "visibility"
-    else:
-        vis_1 = "hidden"
-    print(grafs)
-    poi_1_2 = []
-    poi_1_3 = []
-    try:
-        for i in range(len(find_poi_x(grafs[1], grafs[2]))):
-            poi_1_2.append((find_poi_x(grafs[1], grafs[2])[i], find_poi_y(find_poi_x(grafs[1], grafs[2]), grafs[1])[i]))
-    except:
-        pass
-    try:
-        for ii in range(len(find_poi_x(grafs[1], grafs[3]))):
-            poi_1_3.append((find_poi_x(grafs[1], grafs[3])[ii], find_poi_y(find_poi_x(grafs[1], grafs[3]), grafs[1])[ii]))
-    except:
-        pass
-    print(poi_1_2)
-    print(poi_1_3)
-    info_1 = 'y1 ∩ y2 = '
-    for j in range(len(poi_1_2)):
-        info_1 = info_1 + str(poi_1_2[j])
-        if j + 1 <= len(poi_1_2) - 1:
-            info_1 = info_1 + ";  "
-    info_1 = info_1 + "\n" + 'y1 ∩ y3 = '
+    vis_1, info_1 = info(vis_1, info_1, grafs[1], grafs[2], grafs[3], 1, 2, 3)
+    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1, vis_2=vis_2, vis_3=vis_3,
+                           info_1=info_1, info_2=info_2, info_3=info_3)
 
-    for jj in range(len(poi_1_3)):
-        info_1 = info_1 + str(poi_1_3[jj])
-        if jj + 1 <= len(poi_1_3) - 1:
-            info_1 = info_1 + ";  "
-    print(info_1)
-    info_1 = info_1.replace('\n', '<br>')
-    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1, info_1=info_1)
+
+@app.route("/info__2", methods=["post", "get"])
+def info__2():
+    global vis_2, info_2
+    vis_2, info_2 = info(vis_2, info_2, grafs[2], grafs[1], grafs[3], 2, 1, 3)
+    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1, vis_2=vis_2, vis_3=vis_3,
+                           info_1=info_1, info_2=info_2, info_3=info_3)
+
+
+@app.route("/info__3", methods=["post", "get"])
+def info__3():
+    global vis_3, info_3
+    vis_3, info_3 = info(vis_3, info_3, grafs[3], grafs[1], grafs[2], 3, 1, 2)
+    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1, vis_2=vis_2, vis_3=vis_3,
+                           info_1=info_1, info_2=info_2, info_3=info_3)
+
+
+def info(vis, info, main_g, g_a, g_b, main_g_num, a_g_num, b_g_num):
+    if vis == "hidden":
+        vis = "visibility"
+    else:
+        vis = "hidden"
+    poi_1 = []
+    poi_2 = []
+    try:
+        for i in range(len(find_poi_x(main_g, g_a))):
+            poi_1.append((find_poi_x(main_g, g_a)[i], find_poi_y(find_poi_x(main_g, g_a), main_g)[i]))
+    except:
+        pass
+    try:
+        for ii in range(len(find_poi_x(main_g, g_b))):
+            poi_2.append((find_poi_x(main_g, g_b)[ii], find_poi_y(find_poi_x(main_g, g_b), main_g)[ii]))
+    except:
+        pass
+    # print(poi_1)
+    # print(poi_2)
+    info = f'y{main_g_num} ∩ y{a_g_num} = '
+    for j in range(len(poi_1)):
+        info = info + str(poi_1[j])
+        if j + 1 <= len(poi_1) - 1:
+            info = info + ";  "
+    info = info + "\n" + f'y{main_g_num} ∩ y{b_g_num} = '
+
+    for jj in range(len(poi_2)):
+        info = info + str(poi_2[jj])
+        if jj + 1 <= len(poi_1) - 1:
+            info = info + ";  "
+    # print(info)
+    info = info.replace('\n', '<br>')
+    return vis, info
 
 
 def find_poi_x(eq1, eq2):
