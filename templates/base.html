@@ -8,35 +8,41 @@
 <body>
     <p><img src="static/graf_picture.png" alt="хз лол"></p>
     <form action="/cr_graf1" method="post">
-        <input type="text" id="1" name="tbut1" placeholder="{{gr_1}}" style="margin:4px 0px 4px; position: absolute; top: 516px; left: 20px;"/>
+        <input type="text" id="1" name="tbut1" placeholder="{{gr_1}}" style="position: absolute; top: 100px; left: 650px;"/>
     </form>
     <form action="/cr_graf2" method="post">
-        <input type="text" id="2" name="tbut2" placeholder="{{gr_2}}" style="margin:4px 0px 4px; position: absolute; top: 556px; left: 20px;"/>
+        <input type="text" id="2" name="tbut2" placeholder="{{gr_2}}" style="position: absolute; top: 175px; left: 650px;"/>
     </form>
     <form action="/cr_graf3" method="post">
-        <input type="text" id="3" name="tbut3" placeholder="{{gr_3}}" style="margin:4px 0px 4px; position: absolute; top: 596px; left: 20px;"/>
+        <input type="text" id="3" name="tbut3" placeholder="{{gr_3}}" style="position: absolute; top: 250px; left: 650px;"/>
     </form>
 
-    <form action="/info__1" method="post">
-        <button id="4" name="infobut1" type="submit" style="position: absolute; top: 516px; left: 220px;">i</button>
-    </form>
-    {% autoescape false %}
-     <h3 style="visibility: {{vis_1}}; position: absolute; top: 496px; left: 270px;">{{info_1}}</h3>
-    {% endautoescape %}
-
-    <form action="/info__2" method="post">
-        <button id="5" name="infobut2" type="submit" style="position: absolute; top: 556px; left: 220px;">i</button>
+    <form action="/info" method="post">
+        <button id="4" name="infobut" type="submit" style="position: absolute; top: 100px; left: 900px;">i</button>
     </form>
     {% autoescape false %}
-     <h3 style="visibility: {{vis_2}}; position: absolute; top: 536px; left: 270px;">{{info_2}}</h3>
+     <h3 style="visibility: {{vis}}; position: absolute; top: 496px; left: 310px;">{{info}}</h3>
     {% endautoescape %}
 
-    <form action="/info__3" method="post">
-        <button id="6" name="infobut3" type="submit" style="position: absolute; top: 596px; left: 220px;">i</button>
-    </form>
-    {% autoescape false %}
-     <h3 style="visibility: {{vis_3}}; position: absolute; top: 576px; left: 270px;">{{info_3}}</h3>
-    {% endautoescape %}
+<!--    <form action="/settings__1" method="post">-->
+<!--        <button id="7" name="settbut1" type="submit" style="position: absolute; top: 100px; left: 860px;">⚙️</button>-->
+<!--        <input type="range" id="8" name="border_1" min="3" max="10" value="{{val_1}}" style="visibility: {{vis_1_1}}; position: absolute; top: 516px; left: 310px;"/>-->
+<!--        <h3 style="visibility: {{vis_1_1}}; position: absolute; top: 496px; left: 292px;">3</h3>-->
+<!--        <h3 style="visibility: {{vis_1_1}}; position: absolute; top: 496px; left: 450px;">10</h3>-->
+<!--    </form>-->
 
+<!--    <form action="/settings__2" method="post">-->
+<!--        <button id="9" name="settbut2" type="submit" style="position: absolute; top: 556px; left: 220px;">⚙️</button>-->
+<!--        <input type="range" id="10" name="border_2" min="3" max="10" value="{{val_2}}" style="visibility: {{vis_2_1}}; position: absolute; top: 556px; left: 310px;"/>-->
+<!--        <h3 style="visibility: {{vis_2_1}}; position: absolute; top: 536px; left: 292px;">3</h3>-->
+<!--        <h3 style="visibility: {{vis_2_1}}; position: absolute; top: 536px; left: 450px;">10</h3>-->
+<!--    </form>-->
+
+<!--    <form action="/settings__3" method="post">-->
+<!--        <button id="11" name="settbut3" type="submit" style="position: absolute; top: 596px; left: 220px;">⚙️</button>-->
+<!--        <input type="range" id="12" name="border_3" min="3" max="10" value="{{val_3}}" style="visibility: {{vis_3_1}}; position: absolute; top: 596px; left: 310px;"/>-->
+<!--        <h3 style="visibility: {{vis_3_1}}; position: absolute; top: 576px; left: 292px;">3</h3>-->
+<!--        <h3 style="visibility: {{vis_3_1}}; position: absolute; top: 576px; left: 450px;">10</h3>-->
+<!--    </form>-->
 </body>
 </html>
