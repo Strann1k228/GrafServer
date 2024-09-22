@@ -9,14 +9,9 @@ import os
 
 matplotlib.use('Agg')
 
-vis_1_1 = "hidden"
-vis_2_1 = "hidden"
-vis_3_1 = "hidden"
-
 vis = "hidden"
-
+info = ""
 grafs = {1: "", 2: "", 3: ""}
-grafs_border = [(-5, 5), (-5, 5), (-5, 5)]
 app = Flask(__name__)
 
 
@@ -29,12 +24,11 @@ def create_graf():
     for i in range(len(grafs)):
         if grafs[i + 1] != "":
             func = grafs[i + 1]
-            x = np.linspace(-10, 10, 100)
+            x = np.linspace(-50, 50, 100)
             y = eval(func)
+            plt.xlim(-50, 50)  # Границы по оси X
+            plt.ylim(-50, 50)  # Границы по оси Y
             plt.plot(x, y)
-            # border = grafs_border[i]
-            # x_y = from_text_to_graf_arr(grafs[i + 1], border[0], border[1])
-            # plt.plot(x_y[0], x_y[1])
     try:
         os.remove("static/graf_picture.png")
         plt.savefig("static/graf_picture")
@@ -45,135 +39,88 @@ def create_graf():
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis=vis)
-
-
-# def from_text_to_graf_arr(text, border_neg, border_pos):
-#     b_n, b_p = border_neg, border_pos
-#     x_lst, y_lst = [i for i in range(b_n, b_p)], []
-#     for i in range(b_n, b_p):
-#         t = text.replace("x", f"({str(i)})")
-#         try:
-#             y = eval(t)
-#         except ZeroDivisionError:
-#             pass
-#         y_lst.append(y)
-#     return x_lst, y_lst
-
+    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis=vis, info=info)
 
 @app.route('/cr_graf1', methods=["post", "get"])
 def cr_gr1():
-    a = request.form["tbut1"]
-    grafs[1] = a
+    grafs[1] = request.form["tbut1"]
     create_graf()
-    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis=vis)
-
+    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis=vis, info=info)
 
 @app.route('/cr_graf2', methods=["post", "get"])
 def cr_gr2():
-    b = request.form["tbut2"]
-    grafs[2] = b
+    grafs[2] = request.form["tbut2"]
     create_graf()
-    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis=vis)
+    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis=vis, info=info)
 
 
 @app.route('/cr_graf3', methods=["post", "get"])
 def cr_gr3():
-    c = request.form["tbut3"]
-    grafs[3] = c
+    grafs[3] = request.form["tbut3"]
     create_graf()
-    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis=vis)
-
-
-# @app.route("/settings__1", methods=["post", "get"])
-# def sett__1():
-#     global vis_1, vis_1_1, grafs_border
-#     vis_1 = "hidden"
-#     if vis_1_1 == "hidden":
-#         vis_1_1 = "visibility"
-#     else:
-#         vis_1_1 = "hidden"
-#         # print(request.form["border_1"], grafs_border)
-#         grafs_border[0] = (-int(request.form["border_1"]), int(request.form["border_1"]))
-#         # print(request.form["border_1"], grafs_border)
-#     return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis=vis)
-
-
-# @app.route("/settings__2", methods=["post", "get"])
-# def sett__2():
-#     global vis_2, vis_2_1, grafs_border
-#     vis_2 = "hidden"
-#     if vis_2_1 == "hidden":
-#         vis_2_1 = "visibility"
-#     else:
-#         vis_2_1 = "hidden"
-#         # print(request.form["border_1"], grafs_border)
-#         grafs_border[1] = (-int(request.form["border_2"]), int(request.form["border_2"]))
-#         # print(request.form["border_1"], grafs_border)
-#     return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1, vis_2=vis_2,
-#                            vis_3=vis_3,
-#                            info_1=info_1, info_2=info_2, info_3=info_3, vis_1_1=vis_1_1, vis_2_1=vis_2_1,
-#                            vis_3_1=vis_3_1, val_1=grafs_border[0][1], val_2=grafs_border[1][1],
-#                            val_3=grafs_border[2][1])
-#
-#
-# @app.route("/settings__3", methods=["post", "get"])
-# def sett__3():
-#     global vis_3, vis_3_1, grafs_border
-#     vis_3 = "hidden"
-#     if vis_3_1 == "hidden":
-#         vis_3_1 = "visibility"
-#     else:
-#         vis_3_1 = "hidden"
-#         # print(request.form["border_1"], grafs_border)
-#         grafs_border[2] = (-int(request.form["border_3"]), int(request.form["border_3"]))
-#         # print(request.form["border_1"], grafs_border)
-#     return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis_1=vis_1, vis_2=vis_2,
-#                            vis_3=vis_3,
-#                            info_1=info_1, info_2=info_2, info_3=info_3, vis_1_1=vis_1_1, vis_2_1=vis_2_1,
-#                            vis_3_1=vis_3_1, val_1=grafs_border[0][1], val_2=grafs_border[1][1],
-#                            val_3=grafs_border[2][1])
+    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis=vis, info=info)
 
 
 # функция для всей инфы
 @app.route("/info", methods=["post", "get"])
 def info_():
+    global info, vis
     info = ""
     f1 = grafs[1]
     f2 = grafs[2]
     f3 = grafs[3]
-    info += f"Точка пересечения(1 - 2): {points_per(f1, f2)}\n"
-    info += f"Точка пересечения(1 - 3): {points_per(f1, f3)}\n"
-    info += f"Точка пересечения(2 - 3): {points_per(f2, f3)}\n"
-    info += "\n"
+    info += f"Точка пересечения(1 - 2): {points_per(f1, f2)}<br>"
+    info += f"Точка пересечения(1 - 3): {points_per(f1, f3)}<br>"
+    info += f"Точка пересечения(2 - 3): {points_per(f2, f3)}<br>"
+    info += "<br>"
 
-    info += f"Область определения функции 1: {domain_x(f1)}\n"
-    info += f"Область определения функции 2: {domain_x(f2)}\n"
-    info += f"Область определения функции 3: {domain_x(f3)}\n"
-    info += "\n"
+    info += f"Область определения функции 1: {domain_x(f1)}<br>"
+    info += f"Область определения функции 2: {domain_x(f2)}<br>"
+    info += f"Область определения функции 3: {domain_x(f3)}<br>"
+    info += "<br>"
 
-    info += f"Область значений функции 1: {domain_y(f1)}\n"
-    info += f"Область значений функции 2: {domain_y(f2)}\n"
-    info += f"Область значений функции 3: {domain_y(f3)}\n"
-    info += "\n"
+    info += f"Область значений функции 1: {domain_y(f1)}<br>"
+    info += f"Область значений функции 2: {domain_y(f2)}<br>"
+    info += f"Область значений функции 3: {domain_y(f3)}<br>"
+    info += "<br>"
 
-    info += f"Производная функции 1: {derivative(f1)}\n"
-    info += f"Производная функции 2: {derivative(f2)}\n"
-    info += f"Производная функции 3: {derivative(f3)}\n"
-    info += "\n"
+    info += f"Производная функции 1: {derivative_f(f1)}<br>"
+    info += f"Производная функции 2: {derivative_f(f2)}<br>"
+    info += f"Производная функции 3: {derivative_f(f3)}<br>"
+    info += "<br>"
 
-    info += f"первообразная функции 1: {antiderivative(f1)}\n"
-    info += f"первообразная функции 2: {antiderivative(f2)}\n"
-    info += f"первообразная функции 3: {antiderivative(f3)}\n"
-    print(info)
-    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis=vis)
+    info += f"Первообразная функции 1: {antiderivative_f(f1)}<br>"
+    info += f"Первообразная функции 2: {antiderivative_f(f2)}<br>"
+    info += f"Первообразная функции 3: {antiderivative_f(f3)}<br>"
+    info += "<br>"
+
+    info += f"Промежутки возрастания функции 1: {inc_and_dec_intervals(f1)[0] if inc_and_dec_intervals(f1)[0] is not None else None}<br>"
+    info += f"Промежутки убывания функции 1: {inc_and_dec_intervals(f1)[1] if inc_and_dec_intervals(f1)[1] is not None else None}<br>"
+    info += "<br>"
+
+    info += f"Промежутки возрастания функции 2: {inc_and_dec_intervals(f2)[0] if inc_and_dec_intervals(f2)[0] is not None else None}<br>"
+    info += f"Промежутки убывания функции 2: {inc_and_dec_intervals(f2)[1] if inc_and_dec_intervals(f2)[1] is not None else None}<br>"
+    info += "<br>"
+
+    info += f"Промежутки возрастания функции 3: {inc_and_dec_intervals(f3)[0] if inc_and_dec_intervals(f3)[0] is not None else None}<br>"
+    info += f"Промежутки убывания функции 3: {inc_and_dec_intervals(f3)[1] if inc_and_dec_intervals(f3)[1] is not None else None}<br>"
+    info += "<br>"
+
+    info += f"Функция 1 {odd_or_parity(f1)}<br>"
+    info += f"Функция 2 {odd_or_parity(f2)}<br>"
+    info += f"Функция 3 {odd_or_parity(f3)}<br>"
+    # print(info)
+
+    if vis == "hidden":
+        vis = "visibility"
+    else:
+        vis = "hidden"
+    return render_template('base.html', gr_1=grafs[1], gr_2=grafs[2], gr_3=grafs[3], vis=vis, info=info)
 
 
 def points_per(f, f_):
     try:
         x, y = symbols('x y')
-        f = f
-        f_ = f_
         func = eval(f)
         func_ = eval(f_)
         equation = Eq(func, func_)
@@ -204,17 +151,17 @@ def domain_y(f):
     return domain
 
 
-def derivative(f):
+def derivative_f(f):
     try:
         x = sympy.symbols('x')
         func = eval(f)
-        f_prime = sympy.diff(f, x)
+        f_prime = sympy.diff(func, x)
     except:
         return None
     return f_prime
 
 
-def antiderivative(f):
+def antiderivative_f(f):
     try:
         x = symbols("x")
         func = eval(f)
@@ -222,6 +169,42 @@ def antiderivative(f):
     except:
         return None
     return antiderivative
+
+
+def inc_and_dec_intervals(f):
+    try:
+        x = symbols('x')
+        func = eval(f)
+        f_prime = diff(func, x)
+        critical_points = solve(f_prime, x)
+        intervals = [(-oo, critical_points[0])] + [(critical_points[i], critical_points[i + 1]) for i in
+                                                   range(len(critical_points) - 1)] + [(critical_points[-1], oo)]
+        increasing_intervals = []
+        decreasing_intervals = []
+        for interval in intervals:
+            test_point = (interval[0] + interval[1]) / 2
+            sign = f_prime.subs(x, test_point)
+            if sign > 0:
+                increasing_intervals.append(interval)
+            elif sign < 0:
+                decreasing_intervals.append(interval)
+    except:
+        return [None, None]
+    return increasing_intervals, decreasing_intervals
+
+
+def odd_or_parity(f):
+    try:
+        x = symbols('x')
+        func = eval(f)
+        f_neg_x = func.subs(x, -x)
+        if simplify(f_neg_x - func) == 0:
+            return "чётная"
+        elif simplify(f_neg_x + func) == 0:
+            return "нечётная"
+        return "общего вида"
+    except:
+        return None
 
 
 if __name__ == '__main__':
