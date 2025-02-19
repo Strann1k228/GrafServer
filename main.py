@@ -13,7 +13,6 @@ app = Flask(__name__)
 info = ""
 vis = "hidden"
 image_path = 'static/user_plot.png'
-accuracy = 5
 
 
 @app.route('/', methods=['GET', 'POST'])
