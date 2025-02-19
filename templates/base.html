@@ -2,29 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='serv_icon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Plot Function</title>
 </head>
 <body>
-    <p><img src="static/graf_picture.png"></p>
-    <form action="/t" method="post">
-        <input type="text" id="name" name="name" style="margin:4px 0px 4px"/>
+    <h1 class="a">Построение графиков функций</h1>
+    <form action="/" method="post">
+        <p>
+        <input type="text" id="func_1" name="func_1" placeholder="{{t1}}">
+        </p>
+        <p>
+        <input type="text" id="func_2" name="func_2" placeholder="{{t2}}">
+        </p>
+        <p>
+        <input type="text" id="func_3" name="func_3" placeholder="{{t3}}">
+        </p>
+        <button type="submit" class="b">Построить график</button>
     </form>
-
-    <form action="/PLUS" method="post">
-  <button id="RBtn" name="PlusBtn" type="submit" style="position: absolute; top: 520px; left: 200px;">+</button>
-</form>
-{% if g_num == 2 %}
-        <form action="/t" method="post">
-        <input type="text" id="name1" name="name1" style="margin:4px 0px 4px"/>
+    <a href="/download" download="static/user_plot.png" class="c">Скачать график</a>
+    <form action="/info" method="post">
+        <button id="4" name="infobut" type="submit" style="position: absolute; top: 77px; left: 200px;">i</button>
     </form>
-{% elif g_num == 3 %}
-    <form action="/t" method="post">
-        <input type="text" id="name2.0" name="name2.0" style="margin:4px 0px 4px"/>
-    </form>
-    <form action="/t" method="post">
-        <input type="text" id="name2.1" name="name2.1" style="margin:4px 0px 4px"/>
-    </form>
-{% endif %}
-<p>{{text}}</p>
+    {% autoescape false %}
+     <h3 class="e" style="visibility: {{vis}};">{{info}}</h3>
+    {% endautoescape %}
+    {% if image_path %}
+    <h2 class="d">График функции:</h2>
+    <img src="{{ url_for('static', filename='user_plot.png') }}" alt="Разрабы дауны">
+    {% endif %}
 </body>
 </html>
