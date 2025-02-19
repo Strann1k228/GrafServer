@@ -1,0 +1,26 @@
+.a {
+     font: 30px MontserratExtraBold;
+}
+
+.b{
+     font: 15px Montserrat;
+}
+
+.c{
+     font: 15px Montserrat;
+}
+
+.d{
+     font: 25px MontserratMedium;
+     position: absolute;
+     top: 220px;
+     left: 20px;
+
+}
+
+.e{
+     font: 16px MontserratLight;
+     position: absolute;
+     top: 20px;
+     left: 620px;
+}

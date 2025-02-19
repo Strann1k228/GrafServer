@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='serv_icon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Plot Function</title>
+</head>
+<body>
+    <h1 class="a">Построение графиков функций</h1>
+    <form action="/" method="post">
+        <p>
+        <input type="text" id="func_1" name="func_1" placeholder="{{t1}}">
+        </p>
+        <p>
+        <input type="text" id="func_2" name="func_2" placeholder="{{t2}}">
+        </p>
+        <p>
+        <input type="text" id="func_3" name="func_3" placeholder="{{t3}}">
+        </p>
+        <button type="submit" class="b">Построить график</button>
+    </form>
+    <a href="/download" download="static/user_plot.png" class="c">Скачать график</a>
+    <form action="/info" method="post">
+        <button id="4" name="infobut" type="submit" style="position: absolute; top: 77px; left: 200px;">i</button>
+    </form>
+    {% autoescape false %}
+     <h3 class="e" style="visibility: {{vis}};">{{info}}</h3>
+    {% endautoescape %}
+    {% if image_path %}
+    <h2 class="d">График функции:</h2>
+    <img src="{{ url_for('static', filename='user_plot.png') }}" alt="Разрабы дауны">
+    {% endif %}
+</body>
+</html>
